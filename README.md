@@ -1,35 +1,58 @@
-# Inventory-Forecasting-Linear-Regression
-This repository presents my capstone research on leveraging Machine Learning for Demand Forecasting and Inventory Optimization.
-Many companies struggle with inventory forecasting, frequently misjudging stock levels due to outdated methods or unpredictable demand patterns & surges. 
-This project aims to use machine learning model with Sales quantity as the target variable to predict the quantity for inventory team to stock up for potential sales. 
+# Demand Forecasting & Inventory Optimization
 
-# Dataset
-The dataset is taken from Kaggle.com
-Dataset contains columns such as Date, Store, Product, Category, Region, Inventory Level, Units sold, Units ordered, demand forecast, price, discount, weather condition, holiday/promotion, competitor pricing and seasonality.
+A machine learning and time series analytics project that predicts sales demand and forecasts future inventory needs, helping businesses reduce overstocking and stockouts.
 
-# Modeling
-# Model 1 - Linear Regression with one variable (Stock Level)
-Stock level is the only variable with the highest positive correlation of 0.59 which predicts Sales qty better.
-Other variables have near zero correlation with Sales qty, indicating a weak linear relationship.
-Evaluation of the Model with R², Train score and R², Test Score of 0.348 and 0.348 respectively. Though the score explains only 34% of the variance in sales qty, it gives the best result compared to other models based on R², Test Score.
-This is considered a bad score however that is the best of capability this dataset could do with stock level as the highest correlation variable.
+## Problem Statement
 
-# Model 2 - Random Forest with one variable (Stock Level)
-Evaluation of the Model with R², Train score and R², Test Score of 0.353 and 0.342 respectively.
-# Model 3 - Linear Regression with three variables (Stock Level, Category and Order Qty)
-Evaluation of the Model with R², Train score and R², Test Score of 0.348 and 0.347 respectively.
+Many companies struggle with inventory forecasting — inaccurate stock levels caused by legacy practices, obsolete approaches, and unpredictable demand patterns and surges. This project identifies sales demand patterns and builds models to optimize inventory levels and minimize overstocking.
 
-# Limitations
-- Weak linear relationships : Although stock level emerged as the strongest predictor of sales qty, its correlation of 0.59 suggests only moderate relationship
-- Excessive categorical features : While categorical variables are valuable, one-hot encoding significantly expands the dataset without improving predictive accuracy
-- Limited Influence of External Factors : Variables such as weather and seasonality could impact sales, but the dataset reflects consistent and stable sales patterns, suggesting these features are not strong predictors.
+## Key Results
 
-# Recommendations
-- Businesses should focus on optimizing stock levels for high selling products and categories
-- Maintaining stock level between 50-200 units is ideal based on the sales trend
-- Monitor stock level for products with unusual high demand and collaborate with relevant stakeholders to gain insights for accurate sales forecasting
-  
-# Future Explorations
-- The model used was the most fundamental / widely used (LR model). Since performance was not good on linear models, further techniques like non-linear models (XGBoost / Polynomial Regression) could be explored by capturing complex relationships within the data. 
-- Time series forecasting model could be explored to predict sales qty based on historical trends, seasonal patterns and cyclical behaviors (if any).
-  
+**Regression Models — "What drives sales quantity?"**
+
+| Model | Features | Train R² | Test R² |
+|-------|----------|----------|---------|
+| Linear Regression | Stock Level | 0.348 | 0.348 |
+| Random Forest | Stock Level | 0.354 | 0.343 |
+| Linear Regression | Stock Level + Category + Order Qty | 0.348 | 0.348 |
+| XGBoost | All 16 features | 0.507 | 0.308 |
+| XGBoost (tuned) | All 16 features | 0.356 | 0.346 |
+
+**Time Series Models — "What will demand be next month?"**
+
+| Model | MAE | RMSE | MAPE |
+|-------|-----|------|------|
+| **ARIMA(1,0,0)** | 4,978 units | 5,494 units | **1.2%** | ✅ Best model |
+| SARIMA(1,0,0)(0,0,1,12) | 13,941 units | 14,071 units | 3.3% |
+
+**Top finding:** Stock Level is the dominant driver of sales — validated three ways (correlation 0.59, flat EDA averages for all other features, and 79.6% XGBoost feature importance). All regression models plateaued at ~35% Test R², while the ARIMA time series model delivered most accurate 3-month-ahead demand forecasts.
+
+## Dataset
+
+Sourced from https://www.kaggle.com/code/jijagallery/retail-store-inventory-forecasting 
+
+## Methodology
+
+1. **Data Cleaning & EDA** - Handled partial-month data, explored demand patterns (weather, seasonality, and category)
+2. **Regression Models** - Linear Regression → Random Forest → XGBoost to predict daily Sales Qty
+3. **Time Series Forecasting** - ARIMA and SARIMA to forecast monthly demand, validated with a 21-month train / 3-month test split
+4. **Business Recommendations** - Add in Safety stock, supplier lead time features and accumulate more data to re-train models 
+
+
+## Repository Contents
+
+| File | Description |
+|---|---|
+| `Demand_forecasting.ipynb` | Full analysis — EDA, regression models, time series forecasting models |
+| `Retail Inventory & Sales Performance Dashboard.pbix` | Interactive Power BI dashboard (sales value, inventory value, stock coverage) |
+| `retail_store_inventory.csv` | Source dataset |
+
+[View the Jupyter Notebook](Demand_forecasting.ipynb)
+[View the Power BI Dashboard](Retail Inventory & Sales Performance Dashboard.pbix)
+[View the Dataset](retail_store_inventory.csv)
+
+## Limitations
+
+This dataset is synthetic, which inflates forecast accuracy (near-zero decomposition residuals) compared to real-world data, where MAPE typically runs 10–30%. With only 24 months of history, SARIMA's seasonal component had insufficient data to learn reliable patterns. 
+
+
