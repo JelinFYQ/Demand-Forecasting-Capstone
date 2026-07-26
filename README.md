@@ -43,16 +43,15 @@ Sourced from https://www.kaggle.com/code/jijagallery/retail-store-inventory-fore
 
 | File | Description |
 |---|---|
-| `Demand_forecasting.ipynb` | Full analysis — EDA, regression models, time series forecasting models |
-| `Retail Inventory & Sales Performance Dashboard.pbix` | Interactive Power BI dashboard (sales value, inventory value, stock coverage) |
-| `retail_store_inventory.csv` | Source dataset |
+| [`Demand_forecasting.ipynb`](Demand_forecasting.ipynb) | Full analysis — EDA, regression models, time series forecasting models |
+| [`Retail Inventory & Sales Performance Dashboard.pbix`](<Retail Inventory & Sales Performance Dashboard.pbix>) | Interactive Power BI dashboard (sales value, inventory value, stock coverage) |
+| [`Inventory and Sales performance Dashboard.jpg`](<Inventory and Sales performance Dashboard.jpg>) | Dashboard preview screenshot |
+| [`Demand forecasting case study.pdf`](<Demand forecasting case study.pdf>) | Presentation deck summarizing the project |
+| [`retail_store_inventory.csv`](retail_store_inventory.csv) | Source dataset |
 
-[View the Jupyter Notebook](Demand_forecasting.ipynb)
-[View the Power BI Dashboard](Retail Inventory & Sales Performance Dashboard.pbix)
-[View the Dataset](retail_store_inventory.csv)
 
 ## Limitations
 
 This dataset is synthetic, which inflates forecast accuracy (near-zero decomposition residuals) compared to real-world data, where MAPE typically runs 10–30%. With only 24 months of history, SARIMA's seasonal component had insufficient data to learn reliable patterns. 
 
-
+[Connect with me on LinkedIn](https://www.linkedin.com/in/jelin-foo-yq/)
