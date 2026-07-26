@@ -4,7 +4,7 @@ A machine learning and time series analytics project that predicts sales demand 
 
 ## Problem Statement
 
-Many companies struggle with inventory forecasting — inaccurate stock levels caused by legacy practices, obsolete approaches, and unpredictable demand patterns and surges. This project identifies sales demand patterns and builds models to optimize inventory levels and minimize overstocking.
+Many companies struggle with inventory forecasting - inaccurate stock levels caused by legacy practices, obsolete approaches, and unpredictable demand patterns and surges. This project identifies sales demand patterns and builds models to optimize inventory levels and minimize overstocking.
 
 ## Key Results
 
