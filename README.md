@@ -25,7 +25,7 @@ Many companies struggle with inventory forecasting - inaccurate stock levels cau
 | **ARIMA(1,0,0)** | 4,978 units | 5,494 units | **1.2%** | ✅ Best model |
 | SARIMA(1,0,0)(0,0,1,12) | 13,941 units | 14,071 units | 3.3% |
 
-**Top finding:** Stock Level is the dominant driver of sales — validated three ways (correlation 0.59, flat EDA averages for all other features, and 79.6% XGBoost feature importance). All regression models plateaued at ~35% Test R², while the ARIMA time series model delivered most accurate 3-month-ahead demand forecasts.
+**Findings:** Stock Level is the dominant driver of sales — validated three ways (correlation 0.59, flat EDA averages for all other features, and 79.6% XGBoost feature importance). All regression models plateaued at ~35% Test R², while the ARIMA time series model delivered most accurate 3-month-ahead demand forecasts.
 
 ## Dataset
 
